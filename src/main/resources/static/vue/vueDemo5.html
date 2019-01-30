@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vueDemo5</title>
+    <script src="js/Vue.js"></script>
+</head>
+<body>
+
+    <div id="test">
+        <input v-model="sj">
+        <button @click="addList">提交</button>
+        <ul>
+            <com v-for="(item,index) of list"
+                 :index="index"
+                 :item="item"
+                 @delitem="delitem"
+            ></com>
+        </ul>
+    </div>
+
+<script>
+    Vue.component("com",{
+        props:["item","index"],
+        template:"<li @click='delitem'>{{item}}     {{index}}</li>",
+        methods:{
+            delitem:function () {
+                this.$emit("delitem",this.index)
+            }
+        }
+    })
+
+    new Vue({
+        el:"#test",
+        data:{
+            sj:"",
+            list:[]
+        },
+        methods:{
+            addList:function () {
+                this.list.push(this.sj)
+                this.sj= ""
+            },
+            delitem:function (index) {
+                this.list.splice(index,1)
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vueDemo2</title>
+    <script src="js/Vue.js"></script>
+</head>
+<body>
+<div id="demo1">
+        <!--<input v-model="input">-->
+        <!--<div @click="addList">提交</div>-->
+        <!--<li v-for="i of listData">{{i}}</li>-->
+    <zjdemo></zjdemo>
+    </div>
+
+
+    <script>
+        Vue.component("zjdemo",{
+            template:"<div>item</div>"
+        })
+        new Vue({
+            el:"#demo1",
+            data:{
+                input:"",
+                listData:[]
+            },
+            methods:{
+                addList:function () {
+                    this.listData.push(this.input);
+                    this.input = "";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

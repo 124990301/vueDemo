@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vueDemo6</title>
+    <script src="js/Vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="demo6">
+    <p>
+        <router-link to="/user/foo/tt">/user/foo/tt</router-link>
+        <router-link to="/user/bar/yy">/user/bar/yy</router-link>
+    </p>
+</div>
+
+
+<script>
+    const User = {
+        template: "<div>{{ $route.params.id }}</div>"
+    }
+
+    const router = new VueRouter({
+        routes: [
+            { path: '/user/:id/:name', component: User }
+        ]
+    })
+
+    const app = new Vue({ router }).$mount('#demo6')
+</script>
+</body>
+</html>

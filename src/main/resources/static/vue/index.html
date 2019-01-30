@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VueDemo</title>
+    <script src="js/Vue.js"></script>
+</head>
+<body>
+   <div id="root" v-html="msg" v-on:click="test"></div>
+   <div id="test1">
+       <input v-model="xing">
+       <input v-model="ming">
+       <div>{{xm}}</div>
+       <div>{{count}}</div>
+   </div>
+
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            msg:"<h1>hehe</h1>"
+        },
+        methods:{
+            test:function () {
+               this.msg = "test"
+            }
+        }
+    })
+
+    new Vue({
+        el:"#test1",
+        data:{
+            xing:"",
+            ming:"",
+            count:0
+        },
+        computed:{
+            xm:function () {
+                return this.xing+''+this.ming
+            }
+        },
+        watch:{
+            xing:function () {
+                this.count ++
+            },
+            ming:function () {
+                this.count ++
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

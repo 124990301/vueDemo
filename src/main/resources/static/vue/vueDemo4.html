@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vueDemo3</title>
+    <script src="js/Vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <input v-model="sj">
+        <button @click="addList">提交</button>
+            <!--引入全局组件作为子组件,用属性content给子组件传值-->
+            <!--<todoitem v-for="(item,index) of list" :key="index" :content="item"></todoitem>-->
+            <todoitem :content="list"></todoitem>
+    </div>
+<script>
+//    定义全局组件
+    Vue.component("todoitem",{
+//        接收参数
+        props:["content"],
+        template:"<ul><li v-for='(item,index) of content' @click='delitem'>{{item}}  {{index}}</li></ul>",
+        methods:{
+            delitem:function () {
+                alert(this.index);
+                this.content.splice(this.index,1)
+            }
+        }
+    })
+
+    new Vue({
+        el:"#test",
+        data:{
+            sj:"",
+            list:[]
+        },
+        methods:{
+            addList:function(){
+                this.list.push(this.sj);
+                this.sj=""
+            }
+        }
+    })
+</script>
+</body>
+</html>
